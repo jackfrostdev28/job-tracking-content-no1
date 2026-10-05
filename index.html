@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8fc">
+  <meta name="description" content="Hugcode workboard ภาพรวมงานและความคืบหน้าของทีม">
+  <title>Hugcode | ติดตามงานทีม</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Hugcode หน้าหลัก"><span class="brand-mark">h</span><span>hugcode<span class="brand-dot">.</span></span></a>
+      <div class="topbar-right"><span class="sync-pill" id="connection"><span class="sync-dot"></span><span id="connectionText">กำลังเริ่มต้น…</span></span><button class="avatar" id="accountButton" aria-label="บัญชีผู้ใช้" title="บัญชีผู้ใช้">H</button></div>
+    </header>
+    <main class="main-content">
+      <section class="project-head" aria-labelledby="projectTitle">
+        <div class="project-copy"><div class="eyebrow"><span class="eyebrow-mark">✦</span> TEAM WORKSPACE</div><h1 id="projectTitle">Hugcode <span class="title-divider">/</span> <span>ติดตามงานทีม</span></h1><p class="project-desc">ภาพรวมงานของทีม — วางแผน ติดตาม และส่งต่องานได้ในที่เดียว</p></div>
+        <button class="primary-button" id="newTask"><span class="plus">＋</span> เพิ่มงานใหม่</button>
+      </section>
+      <section class="overview" aria-label="สรุปงาน"><article class="stat-card"><span class="stat-icon all-icon">▤</span><div><div class="stat-label">งานทั้งหมด</div><div class="stat-value" id="totalCount">0 <small>งาน</small></div></div></article><article class="stat-card"><span class="stat-icon active-icon">◷</span><div><div class="stat-label">กำลังดำเนินการ</div><div class="stat-value" id="activeCount">0 <small>งาน</small></div></div></article><div class="overview-note"><span class="people-stack" aria-hidden="true"><i>น</i><i>ม</i><i>อ</i></span><span>ทีมของเรากำลังขับเคลื่อนงานไปด้วยกัน</span></div></section>
+      <section class="toolbar" aria-label="ค้นหาและกรองงาน"><label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="ค้นหาชื่องาน โมดูล หรือรายละเอียด…" aria-label="ค้นหางาน"></label><label class="filter-select"><span class="sr-only">กรองตามผู้รับผิดชอบ</span><select id="assigneeFilter"><option value="">ผู้รับผิดชอบทั้งหมด</option></select></label><label class="filter-select"><span class="sr-only">กรองตามวันที่</span><select id="dateFilter"><option value="">วันที่ทั้งหมด</option><option value="assigned">วันที่มอบหมาย</option><option value="due">กำหนดส่ง</option></select></label><label class="date-input"><span class="sr-only">เลือกวันที่</span><input id="filterDate" type="date" aria-label="เลือกวันที่กรอง"></label><button class="text-button" id="clearFilters">ล้างตัวกรอง</button><button class="icon-button export-button" id="exportButton" aria-label="ส่งออก Excel" title="ส่งออก Excel"><span>⇩</span><span class="export-label">ส่งออก Excel</span></button></section>
+      <div class="board-heading"><h2>บอร์ดงาน <span class="live-label"><i></i> LIVE</span></h2><span class="board-hint">ลากการ์ดเพื่อเปลี่ยนสถานะ</span></div>
+      <section class="board" id="board" aria-label="บอร์ด Kanban"></section>
+      <div class="board-locked" id="boardLocked" hidden><strong>เข้าสู่ระบบเพื่อดูบอร์ดทีม</strong>บอร์ดงานจะแสดงหลังจากเข้าสู่ระบบด้วยบัญชี Supabase ที่ได้รับเชิญ</div>
+    </main>
+    <footer class="footer"><span>Hugcode <span>·</span> ทีมสร้างสรรค์ผลงานที่มีความหมาย</span><button id="settingsButton" class="footer-link">จัดการรายการตั้งค่า</button><span class="sync-footer" id="lastSynced">บันทึกอัตโนมัติ</span></footer>
+  </div>
+  <div class="toast-region" id="toasts" aria-live="polite" aria-atomic="true"></div>
+  <dialog id="taskDialog" class="modal"><form id="taskForm" class="modal-card"><div class="modal-head"><div><div class="eyebrow">WORK ITEM</div><h2 id="taskDialogTitle">เพิ่มงานใหม่</h2></div><button type="button" class="icon-button close-button" data-close="taskDialog" aria-label="ปิด">×</button></div><input type="hidden" id="taskId"><div class="form-grid"><label class="field full"><span>ชื่องาน <b>*</b></span><input id="taskTitle" required maxlength="140" placeholder="เช่น ออกแบบหน้าแดชบอร์ด"></label><label class="field"><span>ชื่อโมดูล</span><input id="taskModule" list="moduleOptions" placeholder="เช่น Dashboard"><datalist id="moduleOptions"></datalist></label><label class="field"><span>สถานะ</span><select id="taskStatus"></select></label><label class="field full"><span>รายละเอียด</span><textarea id="taskDescription" rows="3" placeholder="เพิ่มรายละเอียดของงาน…"></textarea></label><label class="field"><span>ผู้รับผิดชอบ</span><select id="taskAssignee"></select></label><label class="field"><span>ผู้มอบหมาย</span><select id="taskCreator"></select></label><label class="field"><span>ความสำคัญ</span><select id="taskPriority"><option value="low">ต่ำ</option><option value="medium">ปานกลาง</option><option value="high">สูง</option></select></label><label class="field"><span>กำหนดส่ง</span><input id="taskDue" type="datetime-local"></label><label class="field"><span>วันที่และเวลาที่มอบหมาย</span><input id="taskAssigned" type="datetime-local"></label><label class="field"><span>แท็กย่อย <small>คั่นด้วยจุลภาค</small></span><input id="taskTags" placeholder="เช่น frontend, UX"></label></div><div class="form-error" id="taskError" role="alert"></div><div class="modal-actions"><button type="button" class="secondary-button" data-close="taskDialog">ยกเลิก</button><button type="submit" class="primary-button">บันทึกงาน</button></div></form></dialog>
+  <dialog id="detailDialog" class="modal"><div class="modal-card detail-card"><div class="modal-head"><div><div class="eyebrow">WORK ITEM</div><h2 id="detailTitle">รายละเอียดงาน</h2></div><button type="button" class="icon-button close-button" data-close="detailDialog" aria-label="ปิด">×</button></div><div id="detailContent"></div><section class="comments-section"><h3>ความคิดเห็น <span id="commentCount">0</span></h3><div id="commentList" class="comment-list"></div><form id="commentForm" class="comment-form"><label class="sr-only" for="commentInput">เขียนความคิดเห็น</label><textarea id="commentInput" rows="2" placeholder="เขียนความคิดเห็น…" required maxlength="1000"></textarea><button class="primary-button" type="submit">ส่งความคิดเห็น</button></form></section></div></dialog>
+  <dialog id="settingsDialog" class="modal"><div class="modal-card settings-card"><div class="modal-head"><div><div class="eyebrow">WORKSPACE</div><h2>จัดการรายการตั้งค่า</h2></div><button type="button" class="icon-button close-button" data-close="settingsDialog" aria-label="ปิด">×</button></div><p class="settings-intro">เพิ่มหรือลบตัวเลือกที่ทีมใช้ในบอร์ด รายการสถานะจะแก้ไขชื่อได้</p><div id="settingsContent" class="settings-content"></div><div class="modal-actions"><button type="button" class="secondary-button" data-close="settingsDialog">ปิด</button></div></div></dialog>
+  <dialog id="authDialog" class="modal"><form id="authForm" class="modal-card auth-card"><div class="modal-head"><div><div class="eyebrow">HUGCODE WORKSPACE</div><h2>เข้าสู่ระบบ</h2></div></div><p class="auth-intro">เข้าสู่ระบบด้วยอีเมลและรหัสผ่านเพื่อดูบอร์ดงานของทีม</p><label class="field"><span>อีเมล</span><input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com"></label><label class="field"><span>รหัสผ่าน</span><input id="authPassword" type="password" autocomplete="current-password" required placeholder="รหัสผ่าน"></label><div id="authError" class="form-error" role="alert"></div><button class="primary-button auth-submit" type="submit">เข้าสู่ระบบ</button><p id="configHelp" class="config-help" hidden></p></form></dialog>
+</body>
+</html>
