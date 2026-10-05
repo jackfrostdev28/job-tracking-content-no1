@@ -39,3 +39,34 @@ button{font-size:inherit}
 @media(max-width:1100px){.main-content{width:calc(100% - 40px)}.board{gap:12px}.column{padding:11px}.toolbar{gap:8px}.filter-select{min-width:140px}}
 @media(max-width:680px){.topbar{height:60px;padding:0 15px}.main-content{width:calc(100% - 28px);padding:24px 0}.project-head{gap:8px}.project-head h1{font-size:24px}.project-head h1>span:last-child{font-size:17px}.project-desc{font-size:11px;max-width:235px}.project-head>.primary-button{padding:9px 11px;font-size:11px;margin-top:12px}.overview{gap:8px;margin:18px 0}.stat-card{height:70px;padding:9px;gap:8px;border-radius:10px}.stat-icon{height:32px;width:32px;border-radius:9px}.stat-label{font-size:10px}.stat-value{font-size:18px}.toolbar{gap:7px;padding:9px}.search-box{height:40px}.filter-select,.date-input{height:39px}.board-heading{margin-top:21px}.column{padding:10px}.column-cards{min-height:50px}.task-card{padding:13px}.task-title{font-size:14px}.footer{padding:10px 14px}.modal-card{padding:20px}}
 @media(min-width:681px) and (max-width:1100px){.search-box{flex-basis:100%}.filter-select,.date-input{flex:1}.overview-note{margin-left:auto}}
+
+/* Board refresh: a clear workspace hero, calmer filters, and distinct status lanes. */
+body{background:#f2f6fb}
+.topbar{height:72px;padding-left:max(32px,calc((100vw - 1450px)/2));padding-right:max(32px,calc((100vw - 1450px)/2));background:#fff;border-bottom:1px solid #e7edf5}
+.main-content{padding-top:30px}
+.project-head{position:relative;overflow:hidden;min-height:190px;padding:31px 34px;border-radius:18px;background:linear-gradient(118deg,#163c70 0%,#1e5795 57%,#347ed0 100%);box-shadow:0 12px 30px rgba(24,68,119,.15)}
+.project-head::after{content:"";position:absolute;right:10%;top:-120px;width:330px;height:330px;border:1px solid rgba(255,255,255,.10);border-radius:50%;box-shadow:0 0 0 32px rgba(255,255,255,.035),0 0 0 68px rgba(255,255,255,.025);pointer-events:none}
+.project-copy,.project-head>.primary-button{position:relative;z-index:1}
+.project-head .eyebrow{color:#b6d3f5}.project-head .eyebrow-mark{color:#8dc2ff}
+.project-head h1,.project-head h1>span:last-child{color:#fff}.project-head h1{font-size:32px}.project-head h1>span:last-child{font-size:23px;font-weight:500}.title-divider{color:#8dafd6}
+.project-desc{color:#c8daf0;font-size:13px;margin-top:8px}
+.project-head>.primary-button{align-self:flex-end;background:#fff;color:#285f9e;box-shadow:0 5px 15px rgba(10,35,68,.18);font-weight:600}.project-head>.primary-button:hover{background:#f1f7ff}
+.overview{margin:18px 0 23px;gap:13px}
+.stat-card{min-width:190px;height:78px;border:1px solid #e8eef5;border-radius:12px;box-shadow:0 5px 18px rgba(23,50,83,.04)}
+.stat-value{font-size:23px;letter-spacing:-.7px}.all-icon{background:#e9f2ff}.active-icon{background:#e7f7f0}
+.overview-note{color:#7789a0}
+.toolbar{border:1px solid #e4ebf4;border-radius:13px;padding:12px;box-shadow:0 5px 18px rgba(23,50,83,.04)}
+.search-box{flex:1.5;background:#f9fbfd}.filter-select,.date-input{background:#fff}
+.board-heading{margin-top:26px;margin-bottom:13px}.board-heading h2{font-size:17px;color:#263b56}.board-hint{padding:5px 10px;border-radius:20px;background:#eaf1f9;color:#71839a}
+.board{gap:13px}
+.column{padding:12px;border:1px solid #e5ebf3;border-radius:13px;background:#edf2f8;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.column-head{padding:3px 3px 13px}.column-title{color:#3c506a;font-size:13px;font-weight:600}.column-dot{width:9px;height:9px}
+.count-badge{border-radius:20px;background:#e1e8f0}
+.column-cards{gap:10px;min-height:110px}
+.task-card{border:1px solid #e7edf4;border-radius:11px;padding:14px;background:#fff;box-shadow:0 2px 6px rgba(34,57,88,.035)}
+.task-card:hover{border-color:#d4e3f5;transform:translateY(-2px);box-shadow:0 8px 18px rgba(38,75,121,.09)}
+.task-title{font-size:13px;color:#253a55}.task-description{color:#7d8da2}
+.tag{background:#f1f5fa;color:#71839a}.priority.high{background:#fff1ef;color:#cf665e}.priority.medium{background:#fff7e9;color:#b98530}.priority.low{background:#ecf7f1;color:#4b9872}
+.column[data-status="todo"] .column-head{border-bottom:2px solid #a8b7c9}.column[data-status="in_progress"] .column-head{border-bottom:2px solid #5792e9}.column[data-status="review"] .column-head{border-bottom:2px solid #e8ad52}.column[data-status="done"] .column-head{border-bottom:2px solid #4db78b}
+.footer{background:#fff}
+@media(max-width:680px){.topbar{height:60px;padding:0 15px}.main-content{padding-top:18px}.project-head{min-height:0;padding:23px 19px;border-radius:15px;align-items:flex-start}.project-head::after{right:-125px;top:-145px;width:280px;height:280px}.project-head h1{font-size:24px}.project-head h1>span:last-child{font-size:17px}.project-head>.primary-button{margin-top:8px;padding:9px 10px}.overview{margin:13px 0 17px}.stat-card{min-width:0}.overview-note{display:none}.toolbar{border-radius:11px}.board-heading{margin-top:21px}.board-hint{font-size:9px;padding:4px 7px}.board{gap:10px}.column{padding:10px;border-radius:11px}.column-head{padding-bottom:10px}.column-cards{min-height:54px}}
