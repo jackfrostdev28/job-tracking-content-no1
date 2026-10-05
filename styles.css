@@ -2,3 +2,40 @@
 .board-locked{padding:44px 20px;border:1px dashed #d7e1ed;border-radius:10px;background:#fff;color:#8190a5;text-align:center;font-size:13px;line-height:1.8}.board-locked strong{display:block;margin-bottom:4px;color:#455971;font-size:15px}
 @media(max-width:1100px){.board{grid-template-columns:repeat(2,minmax(0,1fr))}.overview{margin-top:22px}.toolbar{flex-wrap:wrap}.search-box{flex-basis:45%}.overview-note{font-size:11px}}
 @media(max-width:680px){.topbar{height:58px;padding:0 16px}.brand{font-size:17px}.sync-pill{font-size:10px;padding:0 8px}.main-content{width:calc(100% - 28px);padding:25px 0 24px}.project-head{align-items:flex-start}.project-head h1{font-size:24px}.project-head h1>span:last-child{font-size:17px}.project-desc{font-size:11px;max-width:240px;line-height:1.6}.project-head>.primary-button{padding:9px 10px;font-size:11px;white-space:nowrap;margin-top:12px}.overview{gap:8px;margin:19px 0}.stat-card{height:67px;min-width:0;flex:1;padding:9px;gap:8px}.stat-icon{width:32px;height:32px}.stat-label{font-size:9px}.stat-value{font-size:18px}.overview-note{display:none}.toolbar{padding:9px;gap:7px}.search-box{flex-basis:100%;height:36px}.filter-select{min-width:calc(50% - 4px);flex:1;padding:0 7px}.date-input{flex:1;min-width:130px;padding:0 7px}.date-input input{font-size:10px}.text-button{padding:7px}.export-button{margin-left:auto;padding:0 8px}.export-label{display:none}.board-heading{margin:20px 1px 10px}.board-hint{font-size:9px}.board{grid-template-columns:minmax(0,1fr);gap:10px}.column{padding:10px}.column-head{padding-bottom:8px}.column-cards{min-height:42px}.task-card{padding:12px}.footer{height:auto;min-height:47px;padding:9px 14px;flex-wrap:wrap;gap:6px 10px;font-size:9px}.footer>span:first-child{flex-basis:100%}.sync-footer{margin-left:auto}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.modal-card{padding:19px}.settings-content{grid-template-columns:1fr}.detail-grid{gap:10px;padding:12px}.comment-form{align-items:stretch}.comment-form .primary-button{padding:8px;font-size:10px}}
+
+/* UI refinement: stronger hierarchy, clearer controls, and comfortable touch targets. */
+:root{--ink:#182a43;--muted:#74849a;--blue:#3478df;--blue-dark:#2868cc;--surface:#fff;--line:#e4ebf4;--shadow:0 3px 14px rgba(28,51,83,.055)}
+body{background:#f4f7fb;color:var(--ink);font-size:14px}
+button,input,select,textarea{font-family:"IBM Plex Sans Thai","Inter",sans-serif}
+button{font-size:inherit}
+.topbar{height:66px;box-shadow:0 1px 0 rgba(28,51,83,.025)}
+.brand{gap:11px}.brand-mark{height:35px;width:35px;border-radius:11px;font-size:23px}
+.main-content{padding-top:36px;padding-bottom:36px}
+.project-head h1{font-size:30px;letter-spacing:-.6px}.project-head h1>span:last-child{color:#5d6e84}
+.project-desc{font-size:14px;margin-top:7px}
+.project-head>.primary-button{padding:12px 18px;font-size:14px;border-radius:9px}
+.overview{gap:12px;margin:26px 0 25px}
+.stat-card{height:82px;min-width:205px;padding:14px 18px;border-radius:12px}
+.stat-icon{height:42px;width:42px;border-radius:12px;font-size:20px}
+.stat-label{font-size:12px}.stat-value{font-size:22px}
+.overview-note{padding:0 5px;font-size:12px}
+.toolbar{gap:10px;padding:11px;border-radius:12px}
+.search-box{height:42px;padding:0 12px}.search-box input,.filter-select select,.date-input input{font-size:13px}
+.filter-select,.date-input{height:42px;padding:0 12px;min-width:155px}
+.text-button{font-size:12px;padding:8px 5px}
+.export-button{height:40px;padding:0 12px;font-size:12px}
+.board-heading{margin-top:27px;margin-bottom:14px}.board-heading h2{font-size:16px}.board-hint{font-size:12px}
+.board{gap:16px}.column{padding:13px;border-radius:11px;background:#eef2f7}.column-head{padding:4px 2px 13px}.column-title{font-size:13px}.count-badge{height:23px;min-width:25px;font-size:11px}
+.column-cards{gap:11px;min-height:90px}.task-card{padding:14px;border-radius:10px;box-shadow:0 2px 7px rgba(32,55,85,.04)}
+.task-card:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(42,72,112,.10)}
+.module-label{font-size:11px}.task-title{font-size:14px;line-height:1.55;margin-top:8px}.task-description{font-size:12px;line-height:1.65}
+.tag{padding:4px 8px;font-size:10px}.priority{padding:4px 8px;font-size:10px}.card-due{font-size:11px;margin-top:10px}
+.card-footer{margin-top:12px;padding-top:10px}.assignee{font-size:11px}.mini-avatar{height:24px;width:24px;font-size:10px}
+.menu-trigger{font-size:20px;padding:3px 5px}.card-menu button{font-size:12px;padding:9px}
+.empty-column{padding:18px 10px;font-size:11px;background:rgba(255,255,255,.48)}
+.footer{height:52px;font-size:11px}
+.modal-card{padding:27px;border-radius:15px}.modal-head h2{font-size:21px}.field{font-size:12px}.field input,.field select,.field textarea,.comment-form textarea{padding:10px 11px;font-size:13px}.primary-button,.secondary-button{font-size:13px}
+.board-locked{margin-top:8px;border-radius:12px}
+@media(max-width:1100px){.main-content{width:calc(100% - 40px)}.board{gap:12px}.column{padding:11px}.toolbar{gap:8px}.filter-select{min-width:140px}}
+@media(max-width:680px){.topbar{height:60px;padding:0 15px}.main-content{width:calc(100% - 28px);padding:24px 0}.project-head{gap:8px}.project-head h1{font-size:24px}.project-head h1>span:last-child{font-size:17px}.project-desc{font-size:11px;max-width:235px}.project-head>.primary-button{padding:9px 11px;font-size:11px;margin-top:12px}.overview{gap:8px;margin:18px 0}.stat-card{height:70px;padding:9px;gap:8px;border-radius:10px}.stat-icon{height:32px;width:32px;border-radius:9px}.stat-label{font-size:10px}.stat-value{font-size:18px}.toolbar{gap:7px;padding:9px}.search-box{height:40px}.filter-select,.date-input{height:39px}.board-heading{margin-top:21px}.column{padding:10px}.column-cards{min-height:50px}.task-card{padding:13px}.task-title{font-size:14px}.footer{padding:10px 14px}.modal-card{padding:20px}}
+@media(min-width:681px) and (max-width:1100px){.search-box{flex-basis:100%}.filter-select,.date-input{flex:1}.overview-note{margin-left:auto}}
